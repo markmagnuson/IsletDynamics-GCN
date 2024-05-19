@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>A developmental gene co-expression network of mouse pancreatic beta cells (BETA-GCN Explorer - Mark Magnuson Lab)</title>
+    <meta name="description" content="Explore gene expression profiles of a mouse developmental gene co-expression network of pancreatic beta cells"/>
+    <meta name="keywords" content="Pancreas, pancreatic, beta cells, co-expression network, genes, expression, explore, data, RNA-Seq, modules, meta-modules, iterativeWGCNA, WGCNA, Mark Magnuson">
+    <meta name="author" content="Jean-Philippe Cartailler">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- DATATABLES -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-3.3.1/dt-1.10.21/b-1.6.3/b-colvis-1.6.3/fc-3.3.1/fh-3.1.7/kt-2.5.2/r-2.2.5/rg-1.1.2/sc-2.0.2/sb-1.0.0/sp-1.1.1/sl-1.3.1/datatables.css"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.3.1/css/fixedColumns.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"/>
+
+    <link rel='shortcut icon' type='image/x-icon' href='/BetaCell-GCN/favicon.ico' />
+
+    <style>
+        /* LAYOUT */
+        /* Custom navbar */
+        .navbar {
+            margin-left:-15px;
+            margin-right:-15px;
+            border-radius: 0;
+            border:0;
+        }
+        .navbar-brand ,.navbar-nav>li>a {
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .navbar-brand{
+            padding-left:45px;
+            color:#fff !important;
+        }
+        .navbar-right{
+            padding-right: 35px !important;
+        }
+        .navbar-nav>.active>a {
+            opacity:.8;
+        }
+        .navbar-nav>.active{
+            border-bottom:5px solid #3498db;
+        }
+
+        /* DATATABLE */
+        th { font-size: 12px !important; }
+        td { font-size: 11px !important; }
+
+        td:first-child {  font-weight:bold;}
+        /*td:nth-child(2) { background-color: #d5dbdb; border:1px solid #e5e8e8  !important;}*/
+
+        #classifiers th[colspan] {
+            text-align: center;
+        }
+
+        /* Prevent bootstrap from taking over sparkline tooltip */
+        .jqstooltip {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+
+        /* float visibility button to far left */
+        div.dt-buttons {
+            position: relative;
+            float: left;
+            padding-right:10px;
+        }
+
+        /* SPINNER */
+        @keyframes spinner {
+            to {transform: rotate(360deg);}
+        }
+
+        .spinner:before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            border-top-color: #333;
+            animation: spinner .6s linear infinite;
+        }
+
+        table th,td { text-align: center !important; }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="navbar navbar-default navbar-inverse">
+        <div class="navbar-header">
+            <span class="navbar-brand">BetaCell-GCN-2024 Explorer</span>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html"> Overview</a></li>
+            <li><a href="genebrowser/index.html"> Gene Membership & expression</a></li>
+            <li><a href="genebrowser/modules.html"> Module Statistics</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/cstoeckert/iterativeWGCNA"> <i class="fab fa-github"></i> iterativeWGCNA</a></li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="well" style="background: #fff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p>NEEDS REVISED TEXT HERE --- A gene co-expression network for mouse pancreatic beta-cells</p>
+                            <img src="images/cytoscape-metamodule-network-2024-01-18.png" alt="Mouse Pancreas Gene Correlation Network - Osipovich et al" class="pull-right img-responsive">
+                        </div>
+
+                        <div class="col-sm-8">
+                            <p>Each node in the meta-network represents a module of highly co-expressed genes.  The meta-network is defined by correlations between module eigengenes and partitions modules into three distinct strongly connected module groups. See figure 1 in the manuscript for additional detail.
+                            </p>
+                            <ul>
+                                <li><a href="images/cytoscape-metamodule-network-2024-01-18.png">Download large metanetwork image</a></li>
+                                <li><a href="BetaCell-metanetwork.cys">Download metanetwork Cytoscape file</a></li>
+                                <li><a href="genebrowser/index.html">Browse/search gene expression data</a></li>
+                                <li><a href="genebrowser/modules.html">Browse/search module data</a></li>
+                            </ul>
+
+                            <p>Please cite:</p>
+                            <blockquote style="font-size:90% !important;">Anna B Osipovich, et al. PAPER TITLE. ETC.  (<a href="https://dev.biologists.org/content/early/2021/02/26/dev.196964">PDF</a>)</blockquote>
+
+                        </div>
+                    </div>
+                </div>
+
+                <h2>For Biologists</h2>
+                <p>We have prepared Cytoscape *session* files that you can download and simply open with <a href="https://www.cytoscape.org">Cytoscape</a> to view and interact with the network meta-modules.</p>
+
+                <ul>
+                    <li>Option 1 - <a class="button" href="Cytoscape-all-modules-filterLevel-high.cys">Download Cytoscape file for all genes, then select the appropriate metamodule</a></li>
+                    <li>Option 2 - <a class="button" href="Cytoscape-all-modules-filterLevel-high.cys">Download Cytoscape file for "TF" genes</a>, filtered via <em>transcription factor activity, sequence-specific DNA binding</em> (<a href="http://www.informatics.jax.org/vocab/gene_ontology/GO:0140110">GO:0140110</a>)</li>
+                </ul>
+                Once you have downloaded the file, open it with Cytoscape and click on the meta-module of interest in the left sidepanel to load and view it. You can then explore the network via Cytoscape's functionality.
+
+                <h2>For Bioinformaticians</h2>
+
+                <p>For each meta-module, you will find below:</p>
+                <ul>
+                    <li>Network image for "all genes" meta-modules</li>
+                    <li>Statistics about number of nodes and edges for "all genes" meta-modules</li>
+                    <li>Cytoscape JSON network file (compressed via ZSTD) for all genes</li>
+                    <li>Cytoscape JSON network file (compressed via ZSTD) for all genes identified as having <strong>transcription regulator activity</strong> (<a href="http://www.informatics.jax.org/vocab/gene_ontology/GO:0140110">GO:0140110</a>)</li>
+                </ul>
+
+                <table class="table table-bordered" >
+                    <thead>
+                    <tr>
+                        
+                        <th>Meta-module</th>
+                        <th>Image</th>
+                        <th># nodes<sup>1</sup></th>
+                        <th># of edges<sup>2</sup></th>
+                        <th>All Genes</th>
+                        <th>Transcription Factors Activity Genes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="background-color:#5778A4;"><span style="color:#ffffff">A</span></td>
+                        <td><a href="images/metamodule-A-filterLevel-High.png"><img src="images/metamodule-A-filterLevel-High.crop.png" alt="Meta-module A" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
+                        <td>2,110</td>
+                        <td>1,831,174</td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-A.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-A.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#E49444"><span style="color:#ffffff">B</span></td>
+                        <td><a href="images/metamodule-B-filterLevel-High.png"><img src="images/metamodule-B-filterLevel-High.crop.png" alt="Meta-module B" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
+                        <td>319</td>
+                        <td>67,374</td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-B.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-B.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#85B6B2"><span style="color:#ffffff">C</span></td>
+                        <td><a href="images/metamodule-C-filterLevel-High.png"><img src="images/metamodule-C-filterLevel-High.crop.png" alt="Meta-module C" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
+                        <td>1,159</td>
+                        <td>1,173,480</td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-C.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-C.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#E7CA60"><span style="color:#ffffff">D</span></td>
+                        <td><a href="images/metamodule-D-filterLevel-High.png"><img src="images/metamodule-D-filterLevel-High.crop.png" alt="Meta-module D" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
+                        <td>257</td>
+                        <td>34,882</td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-D.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-D.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#A87C9F"><span style="color:#ffffff">E</span></td>
+                        <td><a href="images/metamodule-E-filterLevel-High.png"><img src="images/metamodule-E-filterLevel-High.crop.png" alt="Meta-module E" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
+                        <td>3,237</td>
+                        <td>4,041,196</td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-E.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-E.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#F1A2A9"><span style="color:#ffffff">F</span></td>
+                        <td><a href="images/metamodule-F-filterLevel-High.png"><img src="images/metamodule-F-filterLevel-High.crop.png" alt="Meta-module F" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
+                        <td>334</td>
+                        <td>63,296</td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-F.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/markmagnuson/BetaCell-GCN/raw/master/cyjs/metamodule-F.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <hr>
+                <small>
+                    <h5>Legend</h5>
+                    <ol>
+                        <li>A node represents a gene</li>
+                        <li>An edge represents a connection between two nodes and the number of edges shown is representative of edges with correlations of greater than 0.5</li>
+                    </ol>
+                </small>
+
+                <h2>FAQ</h2>
+
+                <h4>Where can I get Cytoscape?</h4>
+                <p>You can download it <a href="http://www.cytoscape.org/">here</a>.</p>
+
+                <h4>How do I load network files in Cytoscape?</h4>
+                <p>In order to load a network from a local file you can select File → Import → Network → File... Choose the correct file in the file chooser dialog and press Open. After you choose a network file, another dialog will pop up. Here, you can choose either to create a new network collection for the new network, or load the new network into an existing network collection. When you choose the latter, make sure to choose the right mapping column to map the new network to the existing network collection.</p>
+
+                <h4>ZSTD? What's that?</h4>
+                <p>Zstandard is a real-time compression algorithm, providing high compression ratios. It's like ZIP, but much better and faster. If you are using linux or mac, then use the "zstd" command. In windows, check out <a href="https://mcmilk.de/projects/7-Zip-ZStd/">https://mcmilk.de/projects/7-Zip-ZStd/</a> or other suitable alternatives. </p>
+                
+
+                <h3>Contact</h3>
+
+                <p>If you have questions, please contact the corresponding author of the manuscript or post an issue in the GitHub issue tracker for this repository.</p>
+
+            </div>
+        </div>
+    </div>
+
+</div> <!-- /container full -->
+
+</body>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-3.3.1/dt-1.10.21/b-1.6.3/b-colvis-1.6.3/fc-3.3.1/fh-3.1.7/kt-2.5.2/r-2.2.5/rg-1.1.2/sc-2.0.2/sb-1.0.0/sp-1.1.1/sl-1.3.1/datatables.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script  type="text/javascript"src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script  type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.js" crossorigin="anonymous"></script>
+
+</html>
