@@ -17,8 +17,6 @@ Expression profiles were determined at the following timepoints and genotypes:
 
 TABLE or IMAGE here
 
-
-
 ## Meta-module network
 Each node (numbered) in the meta-network represents a module of highly co-expressed genes.  The meta-network is defined by correlations between module eigengenes, which partitions modules into several distinct and strongly connected groups of modules.
 
@@ -45,6 +43,9 @@ Each node (numbered) in the meta-network represents a module of highly co-expres
    1. Import file `.cys` 
    2. Layout > Prefuse Force Directed Layout
    3. Layout > yFiles Remove Overlaps
+   4. Export image
 
-4. 
+4. Created a `Cytoscape-all-modules-filterLevel-high.cys` which contains extracted networks for all metamodules, both with "All" genes and "TF only" genes. 
+
+5. 
 
