@@ -120,51 +120,42 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="well" style="background: #fff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
-
-                    <div class="well" style="background: #fff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
-                        <div class="row">
+                    <div class="row">
 
 
-                            <div class="col-sm-12">
-                                <img src="../images/cytoscape-metamodule-network-2024-01-18.png" alt="Mouse Pancreas Gene Correlation Network - Osipovich et al" class="pull-right img-responsive" style="height: 200px">
-                                <p>Results from iterative refined WGCNA network analysis. The file includes 2 tables in separate tabs.</p>
-                                <ol>
-                                    <li>Gene Membership: full listing of the 15,886 expressed genes in the dataset and their module and meta-module membership. This table provides gene names, select gene functional classification annotation (T2D associated genes, transcription factor, signaling molecule and lncRNA), meta-module and module assignment in the network, eigengene connectivity (kMe), gene expression profile, and gene expression values in each sample (averaged normalized counts).</li>
-                                    <li>Modules: details on the 55 module detected by our analysis, including module size, module-density, and module eigengenes</li>
-                                </ol>
-                            </div>
+                        <div class="col-sm-12">
+                            <img src="../images/cytoscape-metamodule-network-2024-01-18.png" alt="Mouse Pancreas Gene Correlation Network - Osipovich et al" class="pull-right img-responsive" style="height: 200px">
+                            <p>Results from iterative refined WGCNA network analysis. The file includes 2 tables in separate tabs.</p>
+                            <ol>
+                                <li>Gene Membership: full listing of the 15,886 expressed genes in the dataset and their module and meta-module membership. This table provides gene names, select gene functional classification annotation (T2D associated genes, transcription factor, signaling molecule and lncRNA), meta-module and module assignment in the network, eigengene connectivity (kMe), gene expression profile, and gene expression values in each sample (averaged normalized counts).</li>
+                                <li>Modules: details on the 55 module detected by our analysis, including module size, module-density, and module eigengenes</li>
+                            </ol>
                         </div>
                     </div>
-
                 </div>
 
                 <table class="table table-striped table-bordered table-condensed" style="width:100%" id="expression">
                     <thead>
                     <tr id="classifiers" style="background: #eceff1 ">
-                        <th colspan="5">Module Assignment</th>
-                        <th colspan="2" style="background: #3498db;">Endoderm</th>
-                        <th colspan="2" style="background-image: linear-gradient(to right, #1565c0 , #673ab7); color:#fff;">Pancreatic Endoderm</th>
-                        <th colspan="1" style="background: #000; color:#fff;">Pancreatic MPCs</th>
-                        <th colspan="4" style="background-image: linear-gradient(to right, #ffee58, #ff9800 );">Endocrine</th>
-                        <th colspan="2" style="background-image: linear-gradient(to right, #ff9800, #d32f2f); color:#fff;">Beta cells</th>
+                        <th colspan="4">Module Assignment</th>
+                        <th colspan="2" style="background: #a87c9f; color:#fff;">Control</th>
+                        <th colspan="4" style="background-image: linear-gradient(to right, #85b6b2, #5778a4); color:#fff;">Tolbutamide</th>
+                        <th colspan="3" style="background: #e7ca60; color:#fff;">Others</th>
                     </tr>
                     <tr>
                         <th>Metamodule</th>
                         <th>Module</th>
-                        <th>Module_iWGCNA</th>
                         <th># Genes</th>
                         <th>Eigengene Profile</th>
-                        <th>Sox17 E8.0</th>
-                        <th>Sox17 E8.5</th>
-                        <th>Sox17 Epcam E9.5</th>
-                        <th>Pdx1 E9.5</th>
-                        <th>Ptf1a E10.5</th>
-                        <th>Neurog3 E15.5 KO</th>
-                        <th>Neurog3 E15.5</th>
-                        <th>Insm1 E15.5 KO</th>
-                        <th>Insm1 E15.5</th>
-                        <th>Ins E16.5</th>
-                        <th>Ins P60</th>
+                        <th>Ctrl - 0h</th>
+                        <th>Ctrl - 24h</th>
+                        <th>Tolb - 24h</th>
+                        <th>Tolb - 2h</th>
+                        <th>Tolb - 30m</th>
+                        <th>Tolb - 6h</th>
+                        <th>Glc - 24h</th>
+                        <th>Tolb/Creb - 24h</th>
+                        <th>Tolb/Vera - 24h</th>
                     </tr>
                     </thead>
 
@@ -172,20 +163,17 @@
                         <tr>
                             <th>Metamodule</th>
                             <th>Module</th>
-                            <th>Module_iWGCNA</th>
                             <th># Genes</th>
                             <th>Eigengene Profile</th>
-                            <th>Sox17 E8.0</th>
-                            <th>Sox17 E8.5</th>
-                            <th>Sox17 Epcam E9.5</th>
-                            <th>Pdx1 E9.5</th>
-                            <th>Ptf1a E10.5</th>
-                            <th>Neurog3 E15.5 KO</th>
-                            <th>Neurog3 E15.5</th>
-                            <th>Insm1 E15.5 KO</th>
-                            <th>Insm1 E15.5</th>
-                            <th>Ins E16.5</th>
-                            <th>Ins P60</th>
+                            <th>Ctrl - 0h</th>
+                            <th>Ctrl - 24h</th>
+                            <th>Tolb - 24h</th>
+                            <th>Tolb - 2h</th>
+                            <th>Tolb - 30m</th>
+                            <th>Tolb - 6h</th>
+                            <th>Glc - 24h</th>
+                            <th>Tolb/Creb - 24h</th>
+                            <th>Tolb/Vera - 24h</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -235,22 +223,19 @@
             },
             "bSortClasses": true,
             "columns": [
-                { "data": "Metamodule" },
+                { "data": "MetamoduleLabel" },
                 { "data": "Module" },
-                { "data": "Module_iWGCNA" },
-                { "data": "# Genes"},
+                { "data": "num_module_genes"},
                 { "data": "Eigengene Profile"},
-                { "data": "Sox17_E8_0" },
-                { "data": "Sox17_E8_5" },
-                { "data": "Sox17_Epcam_E9_5" },
-                { "data": "Pdx1_E9_5" },
-                { "data": "Ptf1a_E10_5" },
-                { "data": "Neurog3_E15_5" },
-                { "data": "Neurog3_E15_5" },
-                { "data": "Insm1_E15_5" },
-                { "data": "Insm1_E15_5" },
-                { "data": "Ins_E16_5" },
-                { "data": "Ins_P60" }
+                { "data": "ctrl_0h" },
+                { "data": "ctrl_24h" },
+                { "data": "tolb_24h" },
+                { "data": "tolb_2h" },
+                { "data": "tolb_30m" },
+                { "data": "tolb_6h" },
+                { "data": "glc_24h" },
+                { "data": "tolb_creb_24h" },
+                { "data": "tolb_vera_24h" }
             ],
             scrollX:        true,
             fixedColumns: {  leftColumns: 1 },
