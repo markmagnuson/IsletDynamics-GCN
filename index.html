@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>A developmental gene co-expression network of mouse pancreatic beta cells (BETA-GCN Explorer - Mark Magnuson Lab)</title>
+    <title>Dynamic Ca2+-dependent transcription links metabolic stress to impaired beta cell identity (IsletDynamics-GCN Explorer - Mark Magnuson Lab)</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="description" content="Explore gene expression profiles of a mouse developmental gene co-expression network of pancreatic beta cells"/>
     <meta name="keywords" content="Pancreas, pancreatic, beta cells, co-expression network, genes, expression, explore, data, RNA-Seq, modules, meta-modules, iterativeWGCNA, WGCNA, Mark Magnuson">
@@ -104,7 +104,7 @@
 
     <div class="navbar navbar-default navbar-inverse">
         <div class="navbar-header">
-            <span class="navbar-brand">BetaCell-GCN-2024 Explorer</span>
+            <span class="navbar-brand">IsletDynamics-GCN-2024 Explorer</span>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="index.html"> Overview</a></li>
@@ -121,22 +121,20 @@
                 <div class="well" style="background: #fff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
                     <div class="row">
                         <div class="col-sm-4">
-                            <p>NEEDS REVISED TEXT HERE --- A gene co-expression network for mouse pancreatic beta-cells</p>
-                            <img src="images/cytoscape-metamodule-network-2024-01-18.png" alt="Mouse Pancreas Gene Correlation Network - Osipovich et al" class="pull-right img-responsive">
+                            <p>A gene co-expression network -- Dynamic Ca2+-dependent transcription links metabolic stress to impaired &beta;-cell identity/p>
+                            <img src="images/meta-network-graph-Mod.png" alt="Mouse Pancreas Gene Correlation Network - Osipovich et al" class="pull-right img-responsive">
                         </div>
 
                         <div class="col-sm-8">
-                            <p>Each node in the meta-network represents a module of highly co-expressed genes.  The meta-network is defined by correlations between module eigengenes and partitions modules into three distinct strongly connected module groups. See figure 1 in the manuscript for additional detail.
-                            </p>
+                            <p>Each node in the meta-network represents a module of highly co-expressed genes. The meta-network is defined by correlations between module eigengenes and partitions modules into three distinct strongly connected module groups.</p>
                             <ul>
-                                <li><a href="images/cytoscape-metamodule-network-2024-01-18.png">Download large metanetwork image</a></li>
-                                <li><a href="BetaCell-metanetwork.cys">Download metanetwork Cytoscape file</a></li>
+                                <li><a href="images/meta-network-graph-Mod.png">Download large metanetwork image</a></li>
                                 <li><a href="genebrowser/index.html">Browse/search gene expression data</a></li>
                                 <li><a href="genebrowser/modules.html">Browse/search module data</a></li>
                             </ul>
 
                             <p>Please cite:</p>
-                            <blockquote style="font-size:90% !important;">Anna B Osipovich, et al. PAPER TITLE. ETC.  (<a href="https://dev.biologists.org/content/early/2021/02/26/dev.196964">PDF</a>)</blockquote>
+                            <blockquote style="font-size:90% !important;">Anna B. Osipovich, et al. Dynamic Ca2+-dependent transcription links metabolic stress to impaired &beta;-cell identity. In preparation.  <!--(<a href="https://dev.biologists.org/content/early/2021/02/26/dev.196964">PDF</a>)--></blockquote>
 
                         </div>
                     </div>
@@ -147,7 +145,7 @@
 
                 <ul>
                     <li>Option 1 - <a class="button" href="Cytoscape-all-modules-filterLevel-high.cys">Download Cytoscape file for all genes, then select the appropriate metamodule</a></li>
-                    <li>Option 2 - <a class="button" href="Cytoscape-all-modules-filterLevel-high.cys">Download Cytoscape file for "TF" genes</a>, filtered via <em>transcription factor activity, sequence-specific DNA binding</em> (<a href="http://www.informatics.jax.org/vocab/gene_ontology/GO:0140110">GO:0140110</a>)</li>
+                    <li>Option 2 - <a class="button" href="Cytoscape-all-modules-filterLevel-high.cys">Download Cytoscape file for "TR" genes</a>, filtered via <em>transcription regulatory activity</em> (<a href="http://www.informatics.jax.org/vocab/gene_ontology/GO:0140110">GO:0140110</a>)</li>
                 </ul>
                 Once you have downloaded the file, open it with Cytoscape and click on the meta-module of interest in the left sidepanel to load and view it. You can then explore the network via Cytoscape's functionality.
 
@@ -169,58 +167,58 @@
                         <th>Image</th>
                         <th># nodes<sup>1</sup></th>
                         <th># of edges<sup>2</sup></th>
-                        <th>All Genes</th>
-                        <th>Transcription Factors Activity Genes</th>
+                        <th>All genes</th>
+                        <th>Transcription regulatory activity genes</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td style="background-color:#5778A4;"><span style="color:#ffffff">A</span></td>
+                        <td style="background-color:#ffffb3;"><span style="color:#ffffff">A</span></td>
                         <td><a href="images/metamodule-A-filterLevel-High.png"><img src="images/metamodule-A-filterLevel-High.crop.png" alt="Meta-module A" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
                         <td>2,110</td>
                         <td>1,831,174</td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-A.filterLevel-any.cyjs.zst">Download</a></td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-A.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-A.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-A.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
                     </tr>
                     <tr>
-                        <td style="background-color:#E49444"><span style="color:#ffffff">B</span></td>
+                        <td style="background-color:#beaed4"><span style="color:#ffffff">B</span></td>
                         <td><a href="images/metamodule-B-filterLevel-High.png"><img src="images/metamodule-B-filterLevel-High.crop.png" alt="Meta-module B" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
                         <td>319</td>
                         <td>67,374</td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-B.filterLevel-any.cyjs.zst">Download</a></td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-B.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-B.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-B.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
                     </tr>
                     <tr>
-                        <td style="background-color:#85B6B2"><span style="color:#ffffff">C</span></td>
+                        <td style="background-color:#fb8072"><span style="color:#ffffff">C</span></td>
                         <td><a href="images/metamodule-C-filterLevel-High.png"><img src="images/metamodule-C-filterLevel-High.crop.png" alt="Meta-module C" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
                         <td>1,159</td>
                         <td>1,173,480</td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-C.filterLevel-any.cyjs.zst">Download</a></td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-C.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-C.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-C.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
                     </tr>
                     <tr>
-                        <td style="background-color:#E7CA60"><span style="color:#ffffff">D</span></td>
+                        <td style="background-color:#7fb0d2"><span style="color:#ffffff">D</span></td>
                         <td><a href="images/metamodule-D-filterLevel-High.png"><img src="images/metamodule-D-filterLevel-High.crop.png" alt="Meta-module D" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
                         <td>257</td>
                         <td>34,882</td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-D.filterLevel-any.cyjs.zst">Download</a></td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-D.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-D.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-D.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
                     </tr>
                     <tr>
-                        <td style="background-color:#A87C9F"><span style="color:#ffffff">E</span></td>
+                        <td style="background-color:#fdc086"><span style="color:#ffffff">E</span></td>
                         <td><a href="images/metamodule-E-filterLevel-High.png"><img src="images/metamodule-E-filterLevel-High.crop.png" alt="Meta-module E" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
                         <td>3,237</td>
                         <td>4,041,196</td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-E.filterLevel-any.cyjs.zst">Download</a></td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-E.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-E.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-E.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
                     </tr>
                     <tr>
-                        <td style="background-color:#F1A2A9"><span style="color:#ffffff">F</span></td>
+                        <td style="background-color:#7fc97f"><span style="color:#ffffff">F</span></td>
                         <td><a href="images/metamodule-F-filterLevel-High.png"><img src="images/metamodule-F-filterLevel-High.crop.png" alt="Meta-module F" style="max-width:100%; width:150px; height:150px; border-radius:75px;"></a></td>
                         <td>334</td>
                         <td>63,296</td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-F.filterLevel-any.cyjs.zst">Download</a></td>
-                        <td><a href="//github.com/vandydata/BetaCell-GCN-2024/raw/master/cyjs/metamodule-F.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-F.filterLevel-any.cyjs.zst">Download</a></td>
+                        <td><a href="//github.com/vandydata/IsletDynamics-GCN-2024/raw/master/cyjs/metamodule-F.filterLevel-any.TFonly.cyjs.zst">Download</a></td>
                     </tr>
 
                     </tbody>

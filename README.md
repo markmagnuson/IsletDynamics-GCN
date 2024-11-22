@@ -9,7 +9,7 @@ Please cite:
 
 ## Explore
 
-Please [explore the data here](https://markmagnuson.github.io/BetaCell-GCN/).
+Please [explore the data here](https://markmagnuson.github.io/IsletDynamics-GCN/).
 
 ## Sample summary
 
@@ -20,10 +20,7 @@ TABLE or IMAGE here
 ## Meta-module network
 Each node (numbered) in the meta-network represents a module of highly co-expressed genes.  The meta-network is defined by correlations between module eigengenes, which partitions modules into several distinct and strongly connected groups of modules.
 
-![Meta-modules](images/cytoscape-metamodule-network-2024-01-18.png)
-
-
-
+![Meta-modules](images/meta-network-graph-Mod.png)
 
 
 | Meta-module | Color | Image | # of nodes | # of edges                            | All Genes | TF   |
@@ -37,7 +34,7 @@ Each node (numbered) in the meta-network represents a module of highly co-expres
 
 ## Data preparation & methods
 
-1. Create new git repo, downloaded ZIP for original betacell-gcn as baseline. Did not fork intentionally to avoid history and accidental contributions to upstream repo.
+1. Create new git repo, downloaded ZIP for original IsletDynamics-gcn as baseline. Did not fork intentionally to avoid history and accidental contributions to upstream repo.
 2. Setup LFS for large file storage for Cytoscape files, `git lfs track 'cysjs/**'`
 3. To create images, open Cytoscape
    1. Import file `.cys` 

@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>A developmental gene co-expression network of mouse pancreatic beta cells (BetaCell-GCN Explorer - Mark Magnuson Lab)</title>
+    <title>Dynamic Ca2+-dependent transcription links metabolic stress to impaired beta cell identity (IsletDynamics-GCN Explorer - Mark Magnuson Lab)</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <meta name="description" content="Explore gene expression profiles of a mouse developmental gene co-expression network of pancreatic beta cells"/>
-    <meta name="keywords" content="Pancreas, pancreatic, beta cells, co-expression network, genes, expression, explore, data, RNA-Seq, modules, meta-modules, iterativeWGCNA, WGCNA, Mark Magnuson">
+    <meta name="keywords" content="Pancreas, pancreatic, beta cells, calcium dynamics, co-expression network, genes, expression, explore, data, RNA-Seq, modules, meta-modules, iterativeWGCNA, WGCNA, Mark Magnuson">
     <meta name="author" content="Jean-Philippe Cartailler">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- DATATABLES -->
@@ -114,7 +114,7 @@
 
     <div class="navbar navbar-default navbar-inverse">
         <div class="navbar-header">
-            <span class="navbar-brand">BetaCell-GCN Explorer</span>
+            <span class="navbar-brand">IsletDynamics-GCN Explorer</span>
         </div>
         <ul class="nav navbar-nav">
             <li><a href="../index.html"> Overview</a></li>
@@ -132,10 +132,10 @@
                     <div class="row">
 
                         <div class="col-sm-12">
-                            <img src="../images/cytoscape-metamodule-network-2024-01-18.png" alt="Mouse Pancreas Gene Correlation Network - Osipovich et al" class="pull-right img-responsive" style="height: 200px">
-                            <p>Results from iterative refined WGCNA network analysis. The file includes 2 tables in separate tabs.</p>
+                            <img src="../images/meta-network-graph-Mod.png" alt="Mouse Pancreas Gene Correlation Network - Osipovich et al" class="pull-right img-responsive" style="height: 200px">
+                            <p>Results from a refined iterativeWGCNA network analysis. The file includes two tables in separate tabs.</p>
                             <ol>
-                                <li>Gene Membership: full listing of the 15,886 expressed genes in the dataset and their module and meta-module membership. This table provides gene names, select gene functional classification annotation (T2D associated genes, transcription factor, signaling molecule and lncRNA), meta-module and module assignment in the network, eigengene connectivity (kMe), gene expression profile, and gene expression values in each sample (averaged normalized counts).</li>
+                                <li>Gene Membership: full listing of the 15,886 expressed genes in the dataset and their module and meta-module membership. This table provides gene names, select gene functional classification annotation (T2D associated genes, transcription activity, signaling molecule and lncRNA), meta-module and module assignment in the network, eigengene connectivity (kMe), gene expression profile, and gene expression values in each sample (averaged normalized counts).</li>
                                 <li>Modules: details on the 55 module detected by our analysis, including module size, module-density, and module eigengenes</li>
                             </ol>
                         </div>
@@ -153,15 +153,18 @@
                         <th colspan="4">Enrichment</th>
                         <th colspan="3">Module Assignment</th>
                         <th></th>
-                        <th colspan="2" style="background: #a87c9f; color:#fff;">Control</th>
-                        <th colspan="4" style="background-image: linear-gradient(to right, #85b6b2, #5778a4); color:#fff;">Tolbutamide</th>
-                        <th colspan="3" style="background: #e7ca60; color:#fff;">Others</th>
+                        <th style="background: #a0a0a4; color:#fff;">Control</th>
+                        <th style="background: #808080; color:#fff;">Control</th>
+                        <th colspan="4" style="background-image: linear-gradient(to right, #96afde, #4472c4); color:#fff;">Tolbutamide</th>
+                        <th style="background: #ff8080; color:#fff;">Glucose</th>
+                        <th style="background: #d29466; color:#fff;">Tol+CREB inhibitor</th>
+                        <th style="background: #769164; color:#fff;">Tol+Ver</th>
                     </tr>
                     <tr>
                         <th>Gene</th>
-                        <th>T2D expression</th>
+                        <th>Is expressed in T2D</th>
+                        <th>Is Transcriptional Regulator</th>
                         <th>Signal</th>
-                        <th>TF</th>
                         <th>lincRNA</th>
                         <th>Meta-module</th>
                         <th>Module</th>
@@ -169,13 +172,13 @@
                         <th>Profile</th>
                         <th>Ctrl - 0h</th>
                         <th>Ctrl - 24h</th>
-                        <th>Tolb - 30m</th>
-                        <th>Tolb - 2h</th>
-                        <th>Tolb - 6h</th>
-                        <th>Tolb - 24h</th>
+                        <th>Tol - 30m</th>
+                        <th>Tol - 2h</th>
+                        <th>Tol - 6h</th>
+                        <th>Tol - 24h</th>
                         <th>Glc - 24h</th>
-                        <th>Tolb/Creb - 24h</th>
-                        <th>Tolb/Vera - 24h</th>
+                        <th>Tol+CREBinh - 24h</th>
+                        <th>Tol+Ver - 24h</th>
                     </tr>
                     </thead>
 
@@ -183,8 +186,8 @@
                     <tr>
                         <th>Gene</th>
                         <th>T2D expression</th>
+                        <th>TR</th>
                         <th>Signal</th>
-                        <th>TF</th>
                         <th>lincRNA</th>
                         <th>Meta-module</th>
                         <th>Module</th>
@@ -208,7 +211,7 @@
                     <h5>Legend</h5>
                     <ul>
                         <li>The data columns are averaged from the original raw count data (N=3 per sample). No normalization was performed.</li>
-                        <li>Enrichment (T2D Expression, Signal, TF, lincRNA): Enrichment is indicated as "Enriched"</li>
+                        <li>Enrichment (T2D Expression, TR, Signal, lincRNA): Enrichment is indicated as "Enriched"</li>
                         <li>Module: UNCLASSIFIED is indicated as "-"</li>
                         <li>Meta-Module: UNCLASSIFIED is indicated as "-"</li>
                     </ul>
@@ -244,26 +247,31 @@
             "bSortClasses": true,
             "columns": [
                 { "data": "Gene" },
-                { "data": "is_T2D" },
-                { "data": "is_ST" },
-                { "data": "is_TF" },
-                { "data": "is_lncRNA" },
-                { "data": "Meta-module" },
-                { "data": "Module" },
-                { "data": "kMe" },
-                { "data": "Profile" },
-                { "data": "ctrl_0h" },
-                { "data": "ctrl_24h" },
-                { "data": "tolb_30m" },
-                { "data": "tolb_2h" },
-                { "data": "tolb_6h" },
-                { "data": "tolb_24h" },
-                { "data": "glc_24h" },
-                { "data": "tolb_creb_24h" },
-                { "data": "tolb_vera_24h" }
+                { "data": "is_T2D", className: 'text-center' },
+                { "data": "is_TF", className: 'text-center' },
+                { "data": "is_ST", className: 'text-center' },
+                { "data": "is_lncRNA", className: 'text-center' },
+                { "data": "Meta-module", className: 'text-center' },
+                { "data": "Module", className: 'text-center' },
+                { "data": "kMe", className: 'text-center' },
+                { "data": "Profile", className: 'text-center' },
+                { "data": "ctrl_0h", className: 'text-center' },
+                { "data": "ctrl_24h", className: 'text-center' },
+                { "data": "tolb_30m", className: 'text-center' },
+                { "data": "tolb_2h", className: 'text-center' },
+                { "data": "tolb_6h", className: 'text-center' },
+                { "data": "tolb_24h", className: 'text-center' },
+                { "data": "glc_24h", className: 'text-center' },
+                { "data": "tolb_creb_24h", className: 'text-center' },
+                { "data": "tolb_vera_24h", className: 'text-center' }
             ],
             scrollX:        true,
-            fixedColumns: {  leftColumns: 1 },
+            scrollCollapse: true,  // Add this
+
+            fixedColumns: {
+                leftColumns: 1,
+                heightMatch: 'auto'
+            },
             lengthMenu: [[10, 20, 50], [10, 20, 50]],
             autoWidth: false,
             //dom: 'Blfrtip', // https://datatables.net/examples/basic_init/dom.html
@@ -272,7 +280,12 @@
                 'colvis'
             ],
             columnDefs: [
-                { "visible": false, "targets": [1,2,3,4] }
+                { "visible": false, "targets": [3,4,7] },
+                {
+                    "width": "30px",
+                    "className": "text-center",
+                    "targets": [7,8,9,10,11,12,13,14]
+                }
             ],
             // sparklines
             "drawCallback": (oSettings) => {
@@ -285,15 +298,15 @@
                     barColor: '#4c4c4c',
                     height: 20,
                     colorMap: [
-                        '#a87c9f',
-                        '#a87c9f',
-                        '#85b6b2',
-                        '#76a2ae',
-                        '#678ea9',
-                        '#5879a4',
-                        '#e7ca60',
-                        '#e7ca60',
-                        '#e7ca60'
+                        '#a0a0a4',
+                        '#808080',
+                        '#96afde',
+                        '#809fd7',
+                        '#678ccf',
+                        '#4472c4',
+                        '#ff8080',
+                        '#d29466',
+                        '#769164'
                     ]
                 });
             }
