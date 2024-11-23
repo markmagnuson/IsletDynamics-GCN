@@ -204,16 +204,20 @@
                         <th>Tolb/Vera - 24h</th>
                     </tr>
                     </tfoot>
+
+                    <tbody>
+                    <!-- Table body will be populated by DataTables -->
+                    </tbody>
                 </table>
 
                 <hr>
                 <small>
                     <h5>Legend</h5>
                     <ul>
-                        <li>The data columns are averaged from the original raw count data (N=3 per sample). No normalization was performed.</li>
-                        <li>Enrichment (T2D Expression, TR, Signal, lincRNA): Enrichment is indicated as "Enriched"</li>
-                        <li>Module: UNCLASSIFIED is indicated as "-"</li>
-                        <li>Meta-Module: UNCLASSIFIED is indicated as "-"</li>
+                        <li>The data columns are averaged condition samples (N=3).</li>
+                        <li>Enrichment (T2D Expression, TR, Signal, lincRNA): Enrichment is indicated as "1"</li>
+                        <li>Module: UNCLASSIFIED is indicated as "U"</li>
+                        <li>Meta-Module: UNCLASSIFIED is indicated as "U"</li>
                     </ul>
                 </small>
             </div>
@@ -225,16 +229,38 @@
 </body>
 
 <script>
-    $(document).ready( function () {
 
-        // Setup - add a text input to each footer cell
-        $('#expression tfoot th').each( function (i) {
-            var title = $('#expression tfoot th').eq( $(this).index() ).text();
-            //console.log($(this).index());
-            $(this).html( '<input type="text" placeholder="Search" data-index="'+i+'" />' );
-        } );
+    $(document).ready(function () {
+        // Natural sort function for module numbers
+        function naturalSort(a, b) {
+            // Extract numbers from strings
+            let aNum = parseInt(a.match(/\d+/)?.[0] || 0);
+            let bNum = parseInt(b.match(/\d+/)?.[0] || 0);
 
-        var table = $('#expression').DataTable( {
+            // If both are numbers, compare numerically
+            if (!isNaN(aNum) && !isNaN(bNum)) {
+                return aNum - bNum;
+            }
+            // Otherwise, use regular string comparison
+            return a.localeCompare(b);
+        }
+
+        // Setup - add appropriate input to each footer cell
+        $('#expression tfoot th').each(function (i) {
+            var title = $(this).text();
+            if (i === 1 || i === 2 || i === 3 || i === 4) { // Binary columns
+                $(this).html('<select class="form-control"><option value="">All</option><option value="0">0</option><option value="1">1</option></select>');
+            } else if (i === 5 || i === 6) { // Meta-module and Module columns
+                $(this).html('<select class="form-control"><option value="">All</option></select>');
+            } else if (i === 0) { // Meta-module and Module columns
+                $(this).html('<input type="text" placeholder="Search '+title+'" data-index="'+i+'" />');
+            } else {
+                $(this).html('&nbsp;');
+            }
+        });
+
+        // Initialize DataTable
+        var table = $('#expression').DataTable({
             destroy: true,
             "ajax": {
                 "url": "data/expression_means.json",
@@ -265,61 +291,96 @@
                 { "data": "tolb_creb_24h", className: 'text-center' },
                 { "data": "tolb_vera_24h", className: 'text-center' }
             ],
-            scrollX:        true,
-            scrollCollapse: true,  // Add this
-
+            scrollX: true,
+            scrollCollapse: true,
             fixedColumns: {
                 leftColumns: 1,
                 heightMatch: 'auto'
             },
             lengthMenu: [[10, 20, 50], [10, 20, 50]],
             autoWidth: false,
-            //dom: 'Blfrtip', // https://datatables.net/examples/basic_init/dom.html
             dom: '<"top"Blf>rt<"bottom"ip><"clear">',
-            buttons: [
-                'colvis'
-            ],
+            buttons: ['colvis'],
             columnDefs: [
                 { "visible": false, "targets": [3,4,7] },
                 {
-                    "width": "30px",
+                    "width": "80px",
                     "className": "text-center",
-                    "targets": [7,8,9,10,11,12,13,14]
+                    "targets": [1,2,3,4,5,6,7,9,10,11,12,13,14]
                 }
             ],
-            // sparklines
-            "drawCallback": (oSettings) => {
-                // console.log('callback');
-                //console.log($('.sparkline:not(:has(canvas))'))
-                $('.sparkline:not(:has(canvas))').sparkline('html', {
-                    type: 'bar',
-                    barWidth: 8,
-                    barSpacing: 2,
-                    barColor: '#4c4c4c',
-                    height: 20,
-                    colorMap: [
-                        '#a0a0a4',
-                        '#808080',
-                        '#96afde',
-                        '#809fd7',
-                        '#678ccf',
-                        '#4472c4',
-                        '#ff8080',
-                        '#d29466',
-                        '#769164'
-                    ]
+            initComplete: function () {
+                // Add options to Meta-module and Module selects after data is loaded
+                this.api().columns([5, 6]).every(function (index) {
+                    var column = this;
+                    var select = $(column.footer()).find('select');
+
+                    // Get unique values and sort them
+                    var values = column.data().unique().toArray();
+                    values = values.filter(function(value) {
+                        return value !== null && value !== '';
+                    });
+
+                    // Sort values using natural sort for modules
+                    if (index === 6) { // Module column
+                        values.sort(naturalSort);
+                    } else { // Meta-module column
+                        values.sort();
+                    }
+
+                    // Add sorted options to select
+                    values.forEach(function(d) {
+                        select.append('<option value="'+d+'">'+d+'</option>');
+                    });
+                });
+
+                // Setup search handlers for select dropdowns
+                this.api().columns().every(function (index) {
+                    var column = this;
+                    var footer = $(column.footer());
+                    var select = footer.find('select');
+
+                    if (select.length) {
+                        select.on('change', function() {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                            column.search(val ? '^'+val+'$' : '', true, false).draw();
+                        });
+                    }
                 });
             }
-        } );
+        });
 
-        // Filter event handler
+        // Setup search handlers for text inputs
         $( table.table().container() ).on( 'keyup', 'tfoot input', function () {
             table
                 .column( $(this).data('index') )
                 .search( this.value )
                 .draw();
-        } );
-    } );
+        });
+
+        // Keep the sparklines functionality
+        table.on('draw', function () {
+            $('.sparkline:not(:has(canvas))').sparkline('html', {
+                type: 'bar',
+                barWidth: 8,
+                barSpacing: 2,
+                barColor: '#4c4c4c',
+                height: 20,
+                colorMap: [
+                    '#a0a0a4',
+                    '#808080',
+                    '#96afde',
+                    '#809fd7',
+                    '#678ccf',
+                    '#4472c4',
+                    '#ff8080',
+                    '#d29466',
+                    '#769164'
+                ]
+            });
+        });
+    });
+
 </script>
 
 <!-- ChartJS -->
